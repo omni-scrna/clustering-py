@@ -80,11 +80,10 @@ def parse_args():
     p.add_argument("--min_samples", type=int, required=True,
                    help="Points needed in a neighborhood for a point to be a core point "
                         "(same role as DBSCAN's min_pts); higher = fewer, denser clusters")
-    p.add_argument("--algorithm", choices=["auto", "ball_tree", "kd_tree", "brute"],
+    p.add_argument("--algorithm", choices=["ball_tree", "kd_tree", "brute"],
                    required=True, help="Nearest-neighbor search backend — see module docstring")
-    p.add_argument("--metric", type=str, default="minkowski",
-                   help="Distance metric for neighbor search, e.g. euclidean, minkowski, "
-                        "manhattan (default: minkowski, i.e. Euclidean with p=2)")
+    p.add_argument("--metric", type=str,
+                   help="Distance metric for neighbor search, e.g. ‘cityblock’, ‘cosine’, ‘euclidean’, ‘l1’, ‘l2’, ‘manhattan’ ")
     p.add_argument("--max_eps", type=float, default=float("inf"),
                    help="Max neighborhood radius considered when expanding from a point; "
                         "inf (default) considers all points, a finite value speeds up "
