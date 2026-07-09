@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this module in your publication, please cite as below."
+type: software
+title: "Clustering Py"
+abstract: |
+  Python clustering methods that do not strictly fit into scanpy.
+authors:
+  - family-names: "Noemi"
+    given-names: ""
+    email: "noemiloffredi@gmail.com"
+date-released: "2026-07-09"
+version: "1.0.0"
+license: MIT
+url: "https://github.com/CHANGE_ME/clustering-py"
+repository-code: "https://github.com/CHANGE_ME/clustering-py"
+keywords:
+  - bioinformatics
+  - computational-biology
+  - benchmark
+  - omnibenchmark
+  - module
+references:
+  - title: "Original implementation"
+    authors:
+      - family-names: "Noemi"
+        given-names: ""
+    type: software
+    url: "https://github.com/CHANGE_ME/clustering-py"
