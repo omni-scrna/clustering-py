@@ -1,7 +1,7 @@
 # OmniBenchmark Module Configuration
 
 entrypoints:
-  cluster: cluster.py
+  cluster: clustering_OPTICS.py
 
 # common code
 # `pixi run -e dev sync` (from this module root) refreshes it.
