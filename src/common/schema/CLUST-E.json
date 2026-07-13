@@ -1,0 +1,9 @@
+{
+  "stage": "CLUST-E",
+  "version": "0.1.0",
+  "benchmark": "omni-scrna/split-stages-plan",
+  "args": [
+    { "flag": "--pcas_tsv", "dest": "pcas", "type": "path", "help": "PCA embedding TSV (cell_id + PC columns) from the pca entrypoint" }
+  ]
+}
+
