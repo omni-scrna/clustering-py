@@ -72,11 +72,11 @@ log = logging.getLogger(__name__)
 
 def parse_args():
     # We own the parser; src/common/cli injects the shared contract (base args + the
-    # `CLUST` stage I/O from common/schema). This module's method params are
+    # `CLUST-E` stage I/O from common/schema). This module's method params are
     # hand-rolled below, so the whole CLI stays visible here.
     p = argparse.ArgumentParser(description="OPTICS clustering module (scikit-learn-backed)")
-    cli.add_base_args(p)            # --output_dir, --name
-    cli.add_stage_args(p, "CLUST")  # --pcas.tsv (dest: pcas)
+    cli.add_base_args(p)              # --output_dir, --name
+    cli.add_stage_args(p, "CLUST-E")  # --pcas_tsv (dest: pcas)
     p.add_argument("--min_samples", type=int, required=True,
                    help="Points needed in a neighborhood for a point to be a core point "
                         "(same role as DBSCAN's min_pts); higher = fewer, denser clusters")
@@ -125,8 +125,8 @@ def cluster_optics(matrix, min_samples, algorithm, metric, max_eps,
 def main():
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
-    args = parse_args()
     print(f"Full command: {' '.join(sys.argv)}")
+    args = parse_args()
     for k in ("output_dir", "name", "pcas", "min_samples", "algorithm", "metric",
               "max_eps", "cluster_method", "xi", "eps", "random_seed"):
         print(f"  {k}: {getattr(args, k)}")
