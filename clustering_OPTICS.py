@@ -13,10 +13,10 @@ graph community detection is exactly that graph.
 OPTICS is a density-based algorithm — it builds its reachability ordering
 by repeatedly asking "who is near this point?" over raw coordinates, and
 answering that question fast (via a ball tree / kd-tree) is the whole
-point of the --algorithm knob below. This module reads the PCA embedding directly
-({name}_pcas.tsv from the pca entrypoint, before the knn step) instead of
-the neighbors bundle, and lets scikit-learn build its own neighbor search
-using whichever algorithm is selected.
+point of the --algorithm knob below. This module reads the embedding directly
+({name}_embedding.tsv from any embedding-producing stage, before the knn step)
+instead of the neighbors bundle, and lets scikit-learn build its own neighbor
+search using whichever algorithm is selected.
 
 Output:
   {output_dir}/{name}_clusters.tsv — cell_id<TAB>cluster
@@ -76,7 +76,7 @@ def parse_args():
     # hand-rolled below, so the whole CLI stays visible here.
     p = argparse.ArgumentParser(description="OPTICS clustering module (scikit-learn-backed)")
     cli.add_base_args(p)              # --output_dir, --name
-    cli.add_stage_args(p, "CLUST-E")  # --pcas_tsv (dest: pcas)
+    cli.add_stage_args(p, "CLUST-E")  # --embedding_tsv
     p.add_argument("--min_samples", type=int, required=True,
                    help="Points needed in a neighborhood for a point to be a core point "
                         "(same role as DBSCAN's min_pts); higher = fewer, denser clusters")
@@ -127,13 +127,13 @@ def main():
                         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
     print(f"Full command: {' '.join(sys.argv)}")
     args = parse_args()
-    for k in ("output_dir", "name", "pcas", "min_samples", "algorithm", "metric",
+    for k in ("output_dir", "name", "embedding_tsv", "min_samples", "algorithm", "metric",
               "max_eps", "cluster_method", "xi", "eps", "random_seed"):
         print(f"  {k}: {getattr(args, k)}")
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
-    matrix, cell_ids = read_embedding(args.pcas)
+    matrix, cell_ids = read_embedding(args.embedding_tsv)
     labels = cluster_optics(
         matrix, args.min_samples, args.algorithm, args.metric, args.max_eps,
         args.cluster_method, args.xi, args.eps,
