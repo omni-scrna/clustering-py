@@ -9,27 +9,13 @@
     {
       "benchmark": "split-stages",
       "repo": "https://github.com/omni-scrna/split-stages-plan",
-      "ref": "main",
-      "commit": "16fe4359b8cba58e73fa96217b8583b911e2218e",
+      "ref": "embed-gen",
+      "commit": "0f66c1024341db43a413c6000ac0cc67b654cc27",
       "files": [
-        "ANNO-M",
-        "ANNO",
-        "CLUST-C",
         "CLUST-E",
-        "CLUST-M",
-        "EMBED-M",
-        "FEAT",
-        "FILT",
-        "GRAPH-M",
-        "INTG8-M",
-        "INTG8",
-        "NNG-C",
-        "NNG",
-        "NORM",
-        "PCA",
         "_base"
       ]
     }
   ],
-  "fetched_at": "2026-07-09T08:57:47Z"
+  "fetched_at": "2026-09-09T10:00:27Z"
 }
